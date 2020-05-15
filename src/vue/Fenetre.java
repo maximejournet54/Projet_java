@@ -5,18 +5,21 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 @SuppressWarnings("serial")
 public class Fenetre extends JFrame implements ActionListener{
 	
-	private JButton boutonajout;
-	private JButton boutonsuppr;
+	private JButton boutonAjout;
+	private JButton boutonSuppr;
 	private JMenuBar barmenu=new JMenuBar();
 	private JMenu produits=new JMenu("Produits");
 	private JMenu commande=new JMenu("Commande");
@@ -40,7 +43,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	
 		
 	this.setTitle("projet"); // titre 
-	this.setSize(500, 400); // taille fenetre
+	this.setSize(600, 500); // taille fenetre
 	this.setLocationRelativeTo(null); // position au centre
 	this.setLayout(new BorderLayout());
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // fermer clic croix rouge
@@ -81,30 +84,66 @@ public class Fenetre extends JFrame implements ActionListener{
 		commande.add(finie);
 		
 		this.setJMenuBar(barmenu);
+	
+			//tableau avec la liste des produits
+				Object[][] data = {
+					      // a changer pour ajouter les produits
+					      
+					    };
 		
-	
-	// panneau qui contient 2 boutons
-	JPanel panneau1=new JPanel(); 
+					    //Les titres des colonnes
+					    String  produits[] = {"Identifiant", "Titre", "Tarif"};
+					    JTable tableau = new JTable(data, produits);
+					    //Nous ajoutons notre tableau à notre contentPane dans un scroll
+					    //Sinon les titres des colonnes ne s'afficheront pas !
+					    this.getContentPane().add(new JScrollPane(tableau));
+				    
+			    
+			  //tableau avec la liste des clients
+			    Object[][] data2 = {
+					      // a changer pour ajouter les clients
+					      
+					    };
 
-	boutonajout=new JButton("+");
-	boutonsuppr=new JButton("-");
-	
-	panneau1.add(boutonajout);
-	panneau1.add(boutonsuppr);
-	panneau1.setBackground(Color.DARK_GRAY);
-	
-	this.add(panneau1, BorderLayout.SOUTH);
-	 
-	// panneau qui contient la liste des produits 
-	JPanel panneau2=new JPanel(); 
-	panneau2.setBackground(Color.DARK_GRAY); // dark theme mais on peut changer la couleur
-	
-	this.add(panneau2);
-	
-	
-
+			    //Les titres des colonnes
+			    String  client[] = {"Identifiant", "Nom", "Prenom"};
+			    JTable tableau2 = new JTable(data2, client);
+			    //Nous ajoutons notre tableau à notre contentPane dans un scroll
+			    //Sinon les titres des colonnes ne s'afficheront pas !
+			    this.getContentPane().add(new JScrollPane(tableau2));
+			    
+				    
+			//tableau avec la liste des commandes
+					    Object[][] data3 = {
+							      // a changer pour ajouter les commandes
+							      
+							    };
+		
+					    //Les titres des colonnes
+					    String  commande[] = {"Date debut", "Date fin", "Montant"};
+					    JTable tableau3 = new JTable(data3, commande);
+					    //Nous ajoutons notre tableau à notre contentPane dans un scroll
+					    //Sinon les titres des colonnes ne s'afficheront pas !
+					    this.getContentPane().add(new JScrollPane(tableau3));
+				    
+			    
+			 // panneau qui contient 2 boutons
+				JPanel panneau1=new JPanel(); 
+				
+				
+				// ajouter image au bouton +
+				boutonAjout=new JButton(new ImageIcon("images/ajout.png"));
+				
+				// ajouter image au bouton -
+				boutonSuppr=new JButton(new ImageIcon("images/suppr.jpg"));
+				
+				
+				panneau1.add(boutonAjout);
+				panneau1.add(boutonSuppr);
+				panneau1.setBackground(Color.DARK_GRAY);
+				
+				this.add(panneau1, BorderLayout.SOUTH);
 }
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
