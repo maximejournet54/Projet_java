@@ -94,7 +94,7 @@ public class Fenetre extends JFrame implements ActionListener{
 					    //Les titres des colonnes
 					    String  produits[] = {"Identifiant", "Titre", "Tarif"};
 					    JTable tableau = new JTable(data, produits);
-					    //Nous ajoutons notre tableau à notre contentPane dans un scroll
+					    //Nous ajoutons notre tableau ï¿½ notre contentPane dans un scroll
 					    //Sinon les titres des colonnes ne s'afficheront pas !
 					    this.getContentPane().add(new JScrollPane(tableau));
 				    
@@ -108,7 +108,7 @@ public class Fenetre extends JFrame implements ActionListener{
 			    //Les titres des colonnes
 			    String  client[] = {"Identifiant", "Nom", "Prenom"};
 			    JTable tableau2 = new JTable(data2, client);
-			    //Nous ajoutons notre tableau à notre contentPane dans un scroll
+			    //Nous ajoutons notre tableau ï¿½ notre contentPane dans un scroll
 			    //Sinon les titres des colonnes ne s'afficheront pas !
 			    this.getContentPane().add(new JScrollPane(tableau2));
 			    
@@ -122,7 +122,7 @@ public class Fenetre extends JFrame implements ActionListener{
 					    //Les titres des colonnes
 					    String  commande[] = {"Date debut", "Date fin", "Montant"};
 					    JTable tableau3 = new JTable(data3, commande);
-					    //Nous ajoutons notre tableau à notre contentPane dans un scroll
+					    //Nous ajoutons notre tableau ï¿½ notre contentPane dans un scroll
 					    //Sinon les titres des colonnes ne s'afficheront pas !
 					    this.getContentPane().add(new JScrollPane(tableau3));
 				    
@@ -135,7 +135,7 @@ public class Fenetre extends JFrame implements ActionListener{
 				boutonAjout=new JButton(new ImageIcon("images/ajout.png"));
 				
 				// ajouter image au bouton -
-				boutonSuppr=new JButton(new ImageIcon("images/suppr.jpg"));
+				boutonSuppr=new JButton(new ImageIcon("images/suppr.png"));
 				
 				
 				panneau1.add(boutonAjout);
