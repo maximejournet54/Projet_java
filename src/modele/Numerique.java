@@ -1,5 +1,5 @@
 package modele;
 
-public interface Numérique extends Produit {
+public interface Numerique extends Produit {
 
 }

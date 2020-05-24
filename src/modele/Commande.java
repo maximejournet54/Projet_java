@@ -1,4 +1,4 @@
-package modele;
+	package modele;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -80,6 +80,8 @@ public final class Commande implements Serializable {
 	        produits.remove(produit);
 	        IDproduits.remove(produit.getId());
 	    }
+	 
+	 
 	 
 	 
     
