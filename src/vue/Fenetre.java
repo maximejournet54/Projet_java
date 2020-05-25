@@ -95,7 +95,7 @@ public class Fenetre extends JFrame implements ActionListener{
 			//tableau avec la liste des produits
 				Object[][] data = {
 					      // a changer pour ajouter les produits
-					      
+						{"1","livre","10"}
 					    };
 		
 					    //Les titres des colonnes
@@ -109,7 +109,7 @@ public class Fenetre extends JFrame implements ActionListener{
 			  //tableau avec la liste des clients
 			    Object[][] data2 = {
 					      // a changer pour ajouter les clients
-					      
+			    		{"1","Michel","Jean"}
 					    };
 
 			    //Les titres des colonnes
@@ -123,7 +123,7 @@ public class Fenetre extends JFrame implements ActionListener{
 			//tableau avec la liste des commandes
 					    Object[][] data3 = {
 							      // a changer pour ajouter les commandes
-							      
+					    		{"01/01/2020","03/01/2020","10"}
 							    };
 		
 					    //Les titres des colonnes
@@ -141,6 +141,7 @@ public class Fenetre extends JFrame implements ActionListener{
 				// ajouter image au bouton +
 				boutonAjout=new JButton(new ImageIcon("images/ajout.png"));
 				
+				
 				// ajouter image au bouton -
 				boutonSuppr=new JButton(new ImageIcon("images/suppr.png"));
 				
@@ -150,9 +151,19 @@ public class Fenetre extends JFrame implements ActionListener{
 				panneau1.setBackground(Color.DARK_GRAY);
 				
 				this.add(panneau1, BorderLayout.SOUTH);
+				boutonAjout.addActionListener(this);
+				boutonSuppr.addActionListener(this);
 				
 				
 }
+	
+	
+
+	public JButton getBoutonAjout() {
+		return boutonAjout;
+	}
+
+
 
 	// initialise les Listeners
 	private void initListeners() {
@@ -180,12 +191,14 @@ public class Fenetre extends JFrame implements ActionListener{
         public void windowClosing(WindowEvent e) {
             exit();
         }
-        
-}
+        }
 
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		 
+			 BoutonAjoutDialog.fenetreBoutonAjout();
+			 
 		
 	}
+
 }
