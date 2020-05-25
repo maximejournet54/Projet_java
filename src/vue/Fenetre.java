@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -23,6 +23,7 @@ import javax.swing.JTable;
 @SuppressWarnings("serial")
 public class Fenetre extends JFrame implements ActionListener{
 	
+	private JComboBox choixFenBox;
 	private JButton boutonAjout;
 	private JButton boutonSuppr;
 	private JMenuBar barmenu=new JMenuBar();
@@ -42,6 +43,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	private JMenuItem roman=new JMenuItem("roman");
 	private JMenuItem encours=new JMenuItem("Commande en cours");
 	private JMenuItem finie=new JMenuItem("Commande terminee");
+	
 	
 
 	public Fenetre(){
@@ -135,7 +137,11 @@ public class Fenetre extends JFrame implements ActionListener{
 				    
 			    
 			 // panneau qui contient 2 boutons
-				JPanel panneau1=new JPanel(); 
+				JPanel panneau1=new JPanel();
+
+				//ajouter choix de la fenêtre à ouvrir
+				Object[] choix = new Object[]{"Client","Commande","Produit"};
+				choixFenBox = new JComboBox<>(choix);
 				
 				
 				// ajouter image au bouton +
@@ -145,7 +151,7 @@ public class Fenetre extends JFrame implements ActionListener{
 				// ajouter image au bouton -
 				boutonSuppr=new JButton(new ImageIcon("images/suppr.png"));
 				
-				
+				panneau1.add(choixFenBox);
 				panneau1.add(boutonAjout);
 				panneau1.add(boutonSuppr);
 				panneau1.setBackground(Color.DARK_GRAY);
@@ -194,11 +200,19 @@ public class Fenetre extends JFrame implements ActionListener{
         }
 
 	
-	public void actionPerformed(ActionEvent e) {
-		 
-			 BoutonAjoutDialog.fenetreBoutonAjout();
-			 
-		
+	public void actionPerformed(ActionEvent e) 
+	{
+		JButton b = (JButton) e.getSource();
+		String choix = (String) choixFenBox.getSelectedItem();
+		if(b == boutonAjout)
+		{
+			if(choix == "Client") 
+				BoutonAjoutDialogClient.fenetreBoutonAjout();
+			else if (choix == "Commande")
+				BoutonAjoutDialogCommande.fenetreBoutonAjout();
+			else if (choix == "Produit")
+				BoutonAjoutDialogProduit.fenetreBoutonAjout();
+		}
 	}
 
 }
