@@ -14,7 +14,7 @@ import javax.swing.JTextArea;// peut-etre a remplacer au lieu de JTextField pour
 
 
 
-public class BoutonAjoutDialog extends Fenetre implements ActionListener {
+public class BoutonAjoutDialogCommande extends Fenetre implements ActionListener {
 
 	/**
 	 * 
@@ -23,14 +23,14 @@ public class BoutonAjoutDialog extends Fenetre implements ActionListener {
 	private Fenetre f;
 	
 	
-		private BoutonAjoutDialog(Fenetre f) {
+		private BoutonAjoutDialogCommande(Fenetre f) {
 			this.f = f;
 			f.getBoutonAjout().addActionListener(this);
 			}
 		
 		 	public static void fenetreBoutonAjout() {    
-		      JFrame frame = new JFrame("Ajouter un client");
-		      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		      JFrame frame = new JFrame("Ajouter une commande");
+		      //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		      creerUI(frame);
 		      
 		      frame.setSize(300, 250); 
@@ -43,7 +43,7 @@ public class BoutonAjoutDialog extends Fenetre implements ActionListener {
 		 private static void creerUI(final JFrame frame){ 
 			 //pannel avec l'identifiant du client
 			  JPanel p1 = new JPanel();
-		      JLabel l1=new JLabel("ID du client");
+		      JLabel l1=new JLabel("ID de la commande");
 		      JTextField t1=new JTextField(10);
 		      p1.add(l1);
 		      p1.add(t1);
