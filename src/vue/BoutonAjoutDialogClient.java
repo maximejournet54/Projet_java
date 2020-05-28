@@ -1,19 +1,18 @@
 package vue;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;// peut-etre a remplacer au lieu de JTextField pour recuperer ce qui est ecrit dans la zone de texte
+//import javax.swing.JTextArea; peut-etre a remplacer au lieu de JTextField pour recuperer ce qui est ecrit dans la zone de texte
 
 
 
 
-public class BoutonAjoutDialogClient extends Fenetre implements ActionListener {
+public class BoutonAjoutDialogClient extends Fenetre{
 
 	/**
 	 * 

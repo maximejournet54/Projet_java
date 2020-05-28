@@ -1,12 +1,10 @@
 package vue;
 
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class BoutonSupprDialogProduit extends Fenetre implements ActionListener {
+public class BoutonSupprDialogProduit extends Fenetre{
 
 	/**
 	 * 
