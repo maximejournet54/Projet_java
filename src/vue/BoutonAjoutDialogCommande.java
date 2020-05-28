@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -69,19 +68,8 @@ public class BoutonAjoutDialogCommande extends Fenetre implements ActionListener
 		      JButton b=new JButton("ajouter");
 		      p4.add(b);
 		      frame.add(p4);
-		      
-		      
-		 	  }
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			
-		}
-		 
-		 	
-		
-		      
+		      		      
+		 	  }	      
 		
 		}
 		

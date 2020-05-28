@@ -1,6 +1,5 @@
 package vue;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -34,14 +33,6 @@ public class BoutonSupprDialogProduit extends Fenetre implements ActionListener 
 				 );
 		 p.add(optionPane);
 		 frame.add(p);
-	 }
-	 
-	 
-	 @Override
-		public void actionPerformed(ActionEvent e) {
-			
-			
-		}
 		 
-
+	 }
 }
