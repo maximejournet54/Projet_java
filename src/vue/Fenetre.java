@@ -23,7 +23,7 @@ import javax.swing.JTable;
 @SuppressWarnings("serial")
 public class Fenetre extends JFrame implements ActionListener{
 	
-	private JComboBox choixFenBox;
+	private JComboBox<Object> choixFenBox;
 	private JButton boutonAjout;
 	private JButton boutonSuppr;
 	private JMenuBar barmenu=new JMenuBar();
@@ -55,7 +55,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	this.setLayout(new BorderLayout());
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // fermer clic croix rouge
 	initListeners();
-	 setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	
 	// barre de menu
 	
@@ -168,6 +168,10 @@ public class Fenetre extends JFrame implements ActionListener{
 	public JButton getBoutonAjout() {
 		return boutonAjout;
 	}
+	
+	public JButton getBoutonSuppr() {
+		return boutonSuppr;
+	}
 
 
 
@@ -213,6 +217,17 @@ public class Fenetre extends JFrame implements ActionListener{
 			else if (choix == "Produit")
 				BoutonAjoutDialogProduit.fenetreBoutonAjout();
 		}
+		else if(b==boutonSuppr)
+		{
+			if(choix == "Client") 
+				BoutonSupprDialogClient.fenetreBoutonAjout();
+			else if (choix == "Commande")
+				BoutonSupprDialogCommande.fenetreBoutonAjout();
+			else if (choix == "Produit")
+				BoutonSupprDialogProduit.fenetreBoutonAjout();
+		}
+		
+		
 	}
 
 }

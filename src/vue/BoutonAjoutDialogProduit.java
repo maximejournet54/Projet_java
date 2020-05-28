@@ -19,7 +19,11 @@ public class BoutonAjoutDialogProduit extends Fenetre implements ActionListener 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3437216359703006270L;
+	/**
+	 * 
+	 */
+	
 	private Fenetre f;
 	
 	
