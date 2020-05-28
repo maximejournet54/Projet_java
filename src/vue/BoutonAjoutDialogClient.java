@@ -28,11 +28,7 @@ public class BoutonAjoutDialogClient extends Fenetre implements ActionListener {
 	 * 
 	 */
 	
-	private Fenetre f;
-	
-	
 		private BoutonAjoutDialogClient(Fenetre f) {
-			this.f = f;
 			f.getBoutonAjout().addActionListener(this);
 			}
 		

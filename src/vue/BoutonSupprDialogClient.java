@@ -13,11 +13,8 @@ public class BoutonSupprDialogClient extends Fenetre implements ActionListener{
 	 * 
 	 */
 	private static final long serialVersionUID = -3075684808095720912L;
-	private Fenetre f;
-	
 	
 	private BoutonSupprDialogClient(Fenetre f) {
-		this.f = f;
 		f.getBoutonSuppr().addActionListener(this);
 		}
 	
