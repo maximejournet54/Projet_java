@@ -2,9 +2,13 @@ package modele;
 
 import java.util.UUID;
 
-@SuppressWarnings("serial")
+
 public class Dictionnaire implements Document {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 249187405275693237L;
 	protected String langue;
 	protected double prix;
 	private UUID id;

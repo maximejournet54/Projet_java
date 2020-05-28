@@ -2,9 +2,13 @@ package modele;
 
 import java.util.UUID;
 
-@SuppressWarnings("serial")
+
 public class DVD implements Numerique {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8604144572393432850L;
 	protected double prix;
 	protected String titre;
 	protected String directeur;

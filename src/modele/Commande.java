@@ -6,8 +6,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@SuppressWarnings("serial")
+
 public final class Commande implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7111575229917946097L;
 	transient private Personne client;
     private Date DateDebut;
     private Date DateFin;

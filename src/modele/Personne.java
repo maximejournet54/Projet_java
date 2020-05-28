@@ -3,9 +3,13 @@ package modele;
 import java.io.Serializable;
 import java.util.UUID;
 
-//Eclipse emet une alerte si on ne donne pas de valeur explicite a ID
-@SuppressWarnings("serial")
+
+
 public class Personne implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -926801676726282274L;
 	private UUID id;
 	protected String nom;
 	protected String prenom;

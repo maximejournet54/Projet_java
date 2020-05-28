@@ -2,9 +2,13 @@ package modele;
 
 import java.util.UUID;
 
-@SuppressWarnings("serial")
+
 public abstract class Livre implements Document {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3208579303171125138L;
 	private UUID id;
 	protected double prix;
 	protected String titre;
