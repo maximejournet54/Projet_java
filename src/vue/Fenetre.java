@@ -220,14 +220,44 @@ public class Fenetre extends JFrame implements ActionListener{
 		else if(b==boutonSuppr)
 		{
 			if(choix == "Client") 
-				BoutonSupprDialogClient.fenetreBoutonAjout();
+			{
+				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer ce client ?","Supprimer ligne ?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" }, JOptionPane.YES_OPTION);
+				if(res == JOptionPane.YES_OPTION)
+				{
+					//Code pour supprimer ligne
+					JOptionPane.showMessageDialog(this, "Ligne supprimée", "Information",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(this, "Opération annulée", "Information",JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
 			else if (choix == "Commande")
-				BoutonSupprDialogCommande.fenetreBoutonAjout();
+			{
+				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer cette commande ?", "Supprimer ligne ?",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" },JOptionPane.YES_OPTION);
+				if (res == JOptionPane.YES_OPTION) 
+				{
+					// Code pour supprimer ligne
+					JOptionPane.showMessageDialog(this, "Ligne supprimée", "Information",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(this, "Opération annulée", "Information",JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
 			else if (choix == "Produit")
-				BoutonSupprDialogProduit.fenetreBoutonAjout();
-		}
-		
-		
+			{
+				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer ce produit ?", "Supprimer ligne ?",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" },JOptionPane.YES_OPTION);
+				if (res == JOptionPane.YES_OPTION)
+				{
+					// Code pour supprimer ligne
+					JOptionPane.showMessageDialog(this, "Ligne supprimée", "Information",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(this, "Opération annulée", "Information",JOptionPane.INFORMATION_MESSAGE);
+				}				
+			}
+		}	
 	}
-
 }
