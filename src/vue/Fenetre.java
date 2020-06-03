@@ -94,46 +94,13 @@ public class Fenetre extends JFrame implements ActionListener{
 		
 		this.setJMenuBar(barmenu);
 	
-			//tableau avec la liste des produits
-				Object[][] data = {
-					      // a changer pour ajouter les produits
-						{"1","livre","10"}
-					    };
-		
-					    //Les titres des colonnes
-					    String  produits[] = {"Identifiant", "Titre", "Tarif"};
-					    JTable tableau = new JTable(data, produits);
-					    //Nous ajoutons notre tableau a notre contentPane dans un scroll
-					    //Sinon les titres des colonnes ne s'afficheront pas !
-					    this.getContentPane().add(new JScrollPane(tableau));
+			
 				    
 			    
-			  //tableau avec la liste des clients
-			    Object[][] data2 = {
-					      // a changer pour ajouter les clients
-			    		{"1","Michel","Jean"}
-					    };
-
-			    //Les titres des colonnes
-			    String  client[] = {"Identifiant", "Nom", "Prenom"};
-			    JTable tableau2 = new JTable(data2, client);
-			    //Nous ajoutons notre tableau a notre contentPane dans un scroll
-			    //Sinon les titres des colonnes ne s'afficheront pas !
-			    this.getContentPane().add(new JScrollPane(tableau2));
+			  
 			    
 				    
-			//tableau avec la liste des commandes
-					    Object[][] data3 = {
-							      // a changer pour ajouter les commandes
-					    		{"01/01/2020","03/01/2020","10"}
-							    };
-		
-					    //Les titres des colonnes
-					    String  commande[] = {"Date debut", "Date fin", "Montant"};
-					    JTable tableau3 = new JTable(data3, commande);
-					    //Nous ajoutons notre tableau a notre contentPane dans un scroll
-					    //Sinon les titres des colonnes ne s'afficheront pas !
-					    this.getContentPane().add(new JScrollPane(tableau3));
+			
 				    
 			    
 			 // panneau qui contient 2 boutons
@@ -221,6 +188,10 @@ public class Fenetre extends JFrame implements ActionListener{
 		{
 			if(choix == "Client") 
 			{
+				Tableaux.tableauClient();
+				//jsp où le mettre
+				 //this.getContentPane().add(new JScrollPane(tableau2));
+				
 				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer ce client ?","Supprimer ligne ?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" }, JOptionPane.YES_OPTION);
 				if(res == JOptionPane.YES_OPTION)
 				{
@@ -234,6 +205,11 @@ public class Fenetre extends JFrame implements ActionListener{
 			}
 			else if (choix == "Commande")
 			{
+				Tableaux.tableauCommande();
+				//this.getContentPane().add(new JScrollPane(tableau3));
+				 //Nous ajoutons notre tableau a notre contentPane dans un scroll
+			    //Sinon les titres des colonnes ne s'afficheront pas !
+				
 				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer cette commande ?", "Supprimer ligne ?",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" },JOptionPane.YES_OPTION);
 				if (res == JOptionPane.YES_OPTION) 
 				{
@@ -247,6 +223,10 @@ public class Fenetre extends JFrame implements ActionListener{
 			}
 			else if (choix == "Produit")
 			{
+				Tableaux.tableauProduit();
+				//this.getContentPane().add(new JScrollPane(tableau));
+			    //Nous ajoutons notre tableau a notre contentPane dans un scroll
+			    //Sinon les titres des colonnes ne s'afficheront pas !
 				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer ce produit ?", "Supprimer ligne ?",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" },JOptionPane.YES_OPTION);
 				if (res == JOptionPane.YES_OPTION)
 				{
