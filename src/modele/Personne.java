@@ -1,31 +1,30 @@
 package modele;
 
-import java.io.Serializable;
 import java.util.UUID;
+import java.util.ArrayList;
 
 
 
-public class Personne implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -926801676726282274L;
-	private UUID id;
+public class Personne {
+	
+	private UUID idpersonne;
 	protected String nom;
 	protected String prenom;
+	ArrayList<Personne>CollectionPersonne;
 	
 	public Personne(String nom, String prenom) {
-		id = UUID.randomUUID();
 		this.nom = nom;
 		this.prenom = prenom;
+		idpersonne = UUID.randomUUID();
+		CollectionPersonne = new ArrayList<Personne>();
 	}
 
-	public UUID getId() {
-		return id;
+	public UUID getIdpersonne() {
+		return idpersonne;
 	}
 
-	public void setId(UUID id) {
-		this.id = id;
+	public void setId(UUID idpersonne) {
+		this.idpersonne = idpersonne;
 	}
 
 	public String getNom() {
@@ -43,6 +42,22 @@ public class Personne implements Serializable {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	
+	public void AjouterPersonne(Personne p) {
+		CollectionPersonne.add(p);
+	}
+	
+	public void SupprimerPersonne(Personne p) {
+		CollectionPersonne.remove(p);
+	}
+	
+	public void AfficherPersonne() {
+		System.out.println("----------------------------------------------------------------------------------");
+	for(Personne p : CollectionPersonne) {
+		System.out.println(p.toString());
+	}
+		System.out.println("----------------------------------------------------------------------------------");
+	}
 
 	@Override
 	public String toString() {
@@ -53,7 +68,7 @@ public class Personne implements Serializable {
 	public boolean equals(Object obj) {
 		
 		if (obj instanceof Personne) {
-			return id.equals(((Personne)obj).id);
+			return idpersonne.equals(((Personne)obj).idpersonne);
 		}
 		
 		else 
@@ -61,10 +76,7 @@ public class Personne implements Serializable {
 		
 	}
 	
-	@Override
-	public int hashCode() {
-		return id.hashCode();
-	}
+	
 		
 	
 	

@@ -1,5 +1,9 @@
 package modele;
 
-public interface Document extends Produit {
+public abstract class Document extends Produit {
+
+	public Document(String titre, float tarifjournalier) {
+		super(titre, tarifjournalier);
+	}
 
 }

@@ -16,13 +16,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 
-@SuppressWarnings("serial")
 public class Fenetre extends JFrame implements ActionListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7394006427481956893L;
 	private JComboBox<Object> choixFenBox;
 	private JButton boutonAjout;
 	private JButton boutonSuppr;
@@ -44,20 +45,18 @@ public class Fenetre extends JFrame implements ActionListener{
 	private JMenuItem encours=new JMenuItem("Commande en cours");
 	private JMenuItem finie=new JMenuItem("Commande terminee");
 	
-	
 
 	public Fenetre(){
 	
-		
-	this.setTitle("projet"); // titre 
-	this.setSize(600, 500); // taille fenetre
-	this.setLocationRelativeTo(null); // position au centre
-	this.setLayout(new BorderLayout());
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // fermer clic croix rouge
-	initListeners();
-	setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setTitle("projet"); // titre 
+		this.setSize(600, 500); // taille fenetre
+		this.setLocationRelativeTo(null); // position au centre
+		this.setLayout(new BorderLayout());
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // fermer clic croix rouge
+		initListeners();
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	
-	// barre de menu
+		// barre de menu
 	
 	
 		// ajout des menus dans l'ordre
@@ -172,10 +171,13 @@ public class Fenetre extends JFrame implements ActionListener{
 		{
 			if(choix == "Client") 
 				BoutonAjoutDialogClient.fenetreBoutonAjout();
+				//ajouter client à CollectionClient
 			else if (choix == "Commande")
 				BoutonAjoutDialogCommande.fenetreBoutonAjout();
+				//ajouter emprunt à CollectionEmprunt
 			else if (choix == "Produit")
 				BoutonAjoutDialogProduit.fenetreBoutonAjout();
+				//ajouter produit à CollectionProduit
 		}
 		else if(b==boutonSuppr)
 		{
@@ -184,6 +186,8 @@ public class Fenetre extends JFrame implements ActionListener{
 				Tableaux.tableauClient();
 				//jsp où le mettre
 				 //this.getContentPane().add(new JScrollPane(tableau2));
+				
+				
 				
 				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer ce client ?","Supprimer ligne ?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" }, JOptionPane.YES_OPTION);
 				if(res == JOptionPane.YES_OPTION)

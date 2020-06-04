@@ -3,62 +3,35 @@ package modele;
 import java.util.UUID;
 
 
-public abstract class Livre implements Document {
+public abstract class Livre extends Document {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3208579303171125138L;
 	private UUID id;
-	protected double prix;
-	protected String titre;
 	protected String auteur;
 	
-	protected Livre(double prix, String titre, String auteur) {
-		this.prix = prix;
-		this.titre = titre;
+	public Livre(String titre, String auteur, float tarifjournalier) {
+		super(auteur, tarifjournalier);
 		this.auteur = auteur;
 		id=UUID.randomUUID();
-	}
-
-	@Override
-	public UUID getId() {
-		return id;
-	}
-
-	@Override
-	public String getTitre() {
-		return titre;
 	}
 
 	public String getAuteur() {
 		return auteur;
 	}
 
-	@Override
-	public String toString() {
-		return "Livre [titre=" + titre + "]";
+	public void setAuteur(String auteur) {
+		this.auteur = auteur;
 	}
 	
-	@Override
-    public double getPrix() {
-        return prix;
+	public UUID getId() {
+		return id;
 	}
-	
-	@Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Produit)
-            return id.equals(((Produit)obj).getId());
-        else
-            return super.equals(obj);
-    }
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-	
-	
-	
-	
 
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public String toString(){
+		return super.toString()+"Livre {" + "Auteur = " + auteur;
+	}
+	
 }

@@ -1,15 +1,16 @@
 package modele;
 
+import java.util.UUID;
 
 public class BD extends Livre{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3189804237506127881L;
+	private UUID id;
 
-	public BD(double prix, String auteur, String titre) {
-        super(prix, auteur, titre);
+	public BD( String auteur, String titre, float tarifjournalier) {
+        super (auteur, titre, tarifjournalier);
+        id=UUID.randomUUID();
     }
 
+	public UUID getId() {
+		return id;
+	}
 }
