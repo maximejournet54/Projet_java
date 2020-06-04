@@ -94,14 +94,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		
 		this.setJMenuBar(barmenu);
 	
-			
-				    
-			    
-			  
-			    
-				    
-			
-				    
+    
 			    
 			 // panneau qui contient 2 boutons
 				JPanel panneau1=new JPanel();
@@ -196,11 +189,11 @@ public class Fenetre extends JFrame implements ActionListener{
 				if(res == JOptionPane.YES_OPTION)
 				{
 					//Code pour supprimer ligne
-					JOptionPane.showMessageDialog(this, "Ligne supprimée", "Information",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Ligne supprimee", "Information",JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(this, "Opération annulée", "Information",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Operation annulee", "Information",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 			else if (choix == "Commande")
@@ -214,11 +207,11 @@ public class Fenetre extends JFrame implements ActionListener{
 				if (res == JOptionPane.YES_OPTION) 
 				{
 					// Code pour supprimer ligne
-					JOptionPane.showMessageDialog(this, "Ligne supprimée", "Information",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Ligne supprimee", "Information",JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(this, "Opération annulée", "Information",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Opération annulee", "Information",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 			else if (choix == "Produit")
@@ -231,11 +224,11 @@ public class Fenetre extends JFrame implements ActionListener{
 				if (res == JOptionPane.YES_OPTION)
 				{
 					// Code pour supprimer ligne
-					JOptionPane.showMessageDialog(this, "Ligne supprimée", "Information",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Ligne supprimee", "Information",JOptionPane.INFORMATION_MESSAGE);
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(this, "Opération annulée", "Information",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Opération annulee", "Information",JOptionPane.INFORMATION_MESSAGE);
 				}				
 			}
 		}	
