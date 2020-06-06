@@ -2,6 +2,8 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.LayoutManager;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -16,6 +18,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Fenetre extends JFrame implements ActionListener{
@@ -44,12 +49,13 @@ public class Fenetre extends JFrame implements ActionListener{
 	private JMenuItem roman=new JMenuItem("roman");
 	private JMenuItem encours=new JMenuItem("Commande en cours");
 	private JMenuItem finie=new JMenuItem("Commande terminee");
+	private JTable tableCl, tableCo, tablePr;
 	
 
 	public Fenetre(){
 	
 		this.setTitle("projet"); // titre 
-		this.setSize(600, 500); // taille fenetre
+		this.setSize(1100, 560); // taille fenetre
 		this.setLocationRelativeTo(null); // position au centre
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // fermer clic croix rouge
@@ -110,16 +116,39 @@ public class Fenetre extends JFrame implements ActionListener{
 				// ajouter image au bouton -
 				boutonSuppr=new JButton(new ImageIcon("images/suppr.png"));
 				
+				JPanel pnlTab = new JPanel();
+				pnlTab.setLayout(new GridLayout(1, 1));
+
+				// Talbeau Client
+				String[] titreCl = new String[] { "Identifiant", "Nom", "Prenom" };
+				Object[][] tabCl = { { "1", "CALVET", "Yann" } };
+				DefaultTableModel tableauCl = new DefaultTableModel(tabCl, titreCl);
+				tableCl = new JTable(tableauCl);
+				pnlTab.add(new JScrollPane(tableCl));
+
+				// Tableau Commande
+				String[] titreCo = new String[] { "Date D√©but", "Date Fin", "Montant" };
+				Object[][] tabCo = { { "01/01/2020", "01/02/2020", "10" } };
+				DefaultTableModel tableauCo = new DefaultTableModel(tabCo, titreCo);
+				tableCo = new JTable(tableauCo);
+				pnlTab.add(new JScrollPane(tableCo));
+
+				// Tableau Produit
+				String[] titrePr = new String[] { "Identifiant", "Titre", "Tarif" };
+				Object[][] tabPr = {{"1","Livre","10"}};
+				DefaultTableModel tableauPr = new DefaultTableModel(tabPr,titrePr);
+				tablePr = new JTable(tableauPr);
+				pnlTab.add(new JScrollPane(tablePr));
+
 				panneau1.add(choixFenBox);
 				panneau1.add(boutonAjout);
 				panneau1.add(boutonSuppr);
 				panneau1.setBackground(Color.DARK_GRAY);
-				
+
+				this.add(pnlTab, BorderLayout.NORTH);
 				this.add(panneau1, BorderLayout.SOUTH);
 				boutonAjout.addActionListener(this);
-				boutonSuppr.addActionListener(this);
-				
-				
+				boutonSuppr.addActionListener(this);		
 }
 	
 	
@@ -167,74 +196,50 @@ public class Fenetre extends JFrame implements ActionListener{
 	{
 		JButton b = (JButton) e.getSource();
 		String choix = (String) choixFenBox.getSelectedItem();
+		String strInfoCl, strInfoCo, strInfoPr;
+		DefaultTableModel tabCl = (DefaultTableModel) tableCl.getModel();
+		DefaultTableModel tabCo = (DefaultTableModel) tableCo.getModel();
+		DefaultTableModel tabPr = (DefaultTableModel) tablePr.getModel();
+
 		if(b == boutonAjout)
 		{
 			if(choix == "Client") 
-				BoutonAjoutDialogClient.fenetreBoutonAjout();
-				//ajouter client ‡ CollectionClient
+			{
+				strInfoCl = JOptionPane.showInputDialog(this,"Saisir les informations du client en les separant par espace\nIdentifiant Nom Prenom (ex : 1 CALVET Yann)","Inscription client", JOptionPane.QUESTION_MESSAGE);
+				String[] infoCl = strInfoCl.split(" ");
+				tabCl.addRow(new Object[]{infoCl[0], infoCl[1], infoCl[2]});
+			}
 			else if (choix == "Commande")
-				BoutonAjoutDialogCommande.fenetreBoutonAjout();
-				//ajouter emprunt ‡ CollectionEmprunt
+			{
+				strInfoCo = JOptionPane.showInputDialog(this,"Saisir les informations de la commande en les separant par espace\nDateD√©but DateFin Montant (ex : 01/01/2020 01/02/2020 10)","Nouvelle Commande", JOptionPane.QUESTION_MESSAGE);
+				String[] infoCo = strInfoCo.split(" ");
+				tabCo.addRow(new Object[]{infoCo[0], infoCo[1], infoCo[2]});
+			}
 			else if (choix == "Produit")
-				BoutonAjoutDialogProduit.fenetreBoutonAjout();
-				//ajouter produit ‡ CollectionProduit
+			{
+				strInfoPr = JOptionPane.showInputDialog(this,"Saisir les informations du produit en les separant par espace\nIdentifiant Nom Tarif (ex : 1 Livre 10)","Cr√©ation produit", JOptionPane.QUESTION_MESSAGE);
+				String[] infoPr = strInfoPr.split(" ");
+				tabPr.addRow(new Object[] { infoPr[0], infoPr[1], infoPr[2] });
+			}
 		}
-		else if(b==boutonSuppr)
+		else if(b==boutonSuppr && (tableCl.getSelectedRow() != -1 || tableCo.getSelectedRow() != -1 || tablePr.getSelectedRow() != -1))
 		{
-			if(choix == "Client") 
+			int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer ce(s) ligne(s) ?","Supprimer ligne(s) ?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" }, JOptionPane.YES_OPTION);
+			if(res == JOptionPane.YES_OPTION)
 			{
-				Tableaux.tableauClient();
-				//jsp o˘ le mettre
-				 //this.getContentPane().add(new JScrollPane(tableau2));
+				if(tableCl.getSelectedRow() != -1)
+					tabCl.removeRow(tableCl.getSelectedRow());
+
+				if(tableCo.getSelectedRow() != -1)
+					tabCo.removeRow(tableCo.getSelectedRow());
+
+				if(tablePr.getSelectedRow() != -1)
+					tabPr.removeRow(tablePr.getSelectedRow());
 				
-				
-				
-				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer ce client ?","Supprimer ligne ?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" }, JOptionPane.YES_OPTION);
-				if(res == JOptionPane.YES_OPTION)
-				{
-					//Code pour supprimer ligne
-					JOptionPane.showMessageDialog(this, "Ligne supprimee", "Information",JOptionPane.INFORMATION_MESSAGE);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(this, "Operation annulee", "Information",JOptionPane.INFORMATION_MESSAGE);
-				}
+				JOptionPane.showMessageDialog(this, "Ligne(s) supprimee(s)", "Information", JOptionPane.INFORMATION_MESSAGE);
 			}
-			else if (choix == "Commande")
-			{
-				Tableaux.tableauCommande();
-				//this.getContentPane().add(new JScrollPane(tableau3));
-				 //Nous ajoutons notre tableau a notre contentPane dans un scroll
-			    //Sinon les titres des colonnes ne s'afficheront pas !
-				
-				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer cette commande ?", "Supprimer ligne ?",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" },JOptionPane.YES_OPTION);
-				if (res == JOptionPane.YES_OPTION) 
-				{
-					// Code pour supprimer ligne
-					JOptionPane.showMessageDialog(this, "Ligne supprimee", "Information",JOptionPane.INFORMATION_MESSAGE);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(this, "Op√©ration annulee", "Information",JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
-			else if (choix == "Produit")
-			{
-				Tableaux.tableauProduit();
-				//this.getContentPane().add(new JScrollPane(tableau));
-			    //Nous ajoutons notre tableau a notre contentPane dans un scroll
-			    //Sinon les titres des colonnes ne s'afficheront pas !
-				int res = JOptionPane.showOptionDialog(this, "Voulez vous supprimer ce produit ?", "Supprimer ligne ?",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Oui", "Non" },JOptionPane.YES_OPTION);
-				if (res == JOptionPane.YES_OPTION)
-				{
-					// Code pour supprimer ligne
-					JOptionPane.showMessageDialog(this, "Ligne supprimee", "Information",JOptionPane.INFORMATION_MESSAGE);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(this, "Op√©ration annulee", "Information",JOptionPane.INFORMATION_MESSAGE);
-				}				
-			}
-		}	
+			else if(res == JOptionPane.NO_OPTION)
+				JOptionPane.showMessageDialog(this, "Op√©ration annulee", "Information",JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 }
