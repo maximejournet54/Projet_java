@@ -2,7 +2,7 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.LayoutManager;
+//import java.awt.LayoutManager;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -50,15 +51,16 @@ public class Fenetre extends JFrame implements ActionListener{
 	private JMenuItem encours=new JMenuItem("Commande en cours");
 	private JMenuItem finie=new JMenuItem("Commande terminee");
 	private JTable tableCl, tableCo, tablePr;
-	
+	private JLabel lclient,lproduit,lcommande;
 
 	public Fenetre(){
 	
 		this.setTitle("projet"); // titre 
-		this.setSize(1100, 560); // taille fenetre
+		this.setSize(1400, 570); // taille fenetre
 		this.setLocationRelativeTo(null); // position au centre
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // fermer clic croix rouge
+		this.setResizable(false);
 		initListeners();
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	
@@ -120,25 +122,37 @@ public class Fenetre extends JFrame implements ActionListener{
 				pnlTab.setLayout(new GridLayout(1, 1));
 
 				// Talbeau Client
+				JPanel pnlClient = new JPanel();
 				String[] titreCl = new String[] { "Identifiant", "Nom", "Prenom" };
 				Object[][] tabCl = { { "1", "CALVET", "Yann" } };
 				DefaultTableModel tableauCl = new DefaultTableModel(tabCl, titreCl);
 				tableCl = new JTable(tableauCl);
-				pnlTab.add(new JScrollPane(tableCl));
+				lclient = new JLabel("Tableau des clients");
+				pnlClient.add(lclient);
+				pnlClient.add(new JScrollPane(tableCl));
+				pnlTab.add(pnlClient);
 
 				// Tableau Commande
+				JPanel pnlCommande = new JPanel();
 				String[] titreCo = new String[] { "Date Début", "Date Fin", "Montant" };
 				Object[][] tabCo = { { "01/01/2020", "01/02/2020", "10" } };
 				DefaultTableModel tableauCo = new DefaultTableModel(tabCo, titreCo);
 				tableCo = new JTable(tableauCo);
-				pnlTab.add(new JScrollPane(tableCo));
+				lcommande = new JLabel("Tableau des commandes");
+				pnlCommande.add(lcommande);
+				pnlCommande.add(new JScrollPane(tableCo));
+				pnlTab.add(pnlCommande);
 
 				// Tableau Produit
+				JPanel pnlProduit = new JPanel();
 				String[] titrePr = new String[] { "Identifiant", "Titre", "Tarif" };
 				Object[][] tabPr = {{"1","Livre","10"}};
 				DefaultTableModel tableauPr = new DefaultTableModel(tabPr,titrePr);
 				tablePr = new JTable(tableauPr);
-				pnlTab.add(new JScrollPane(tablePr));
+				lproduit = new JLabel("Tableau des produits");
+				pnlProduit.add(lproduit);
+				pnlProduit.add(new JScrollPane(tablePr));
+				pnlTab.add(pnlProduit);
 
 				panneau1.add(choixFenBox);
 				panneau1.add(boutonAjout);
