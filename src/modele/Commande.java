@@ -37,14 +37,4 @@ public final class Commande  {
 		nocommande = newnocommande;
 	}
     
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-    
-    
-
 }
