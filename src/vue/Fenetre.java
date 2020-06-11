@@ -40,12 +40,12 @@ public class Fenetre extends JFrame implements ActionListener{
 	// constructeur 
 	public Fenetre(){
 	
-		this.setTitle("Gestion de la vidéothèque"); // titre 
+		this.setTitle("Gestion de la vidï¿½othï¿½que"); // titre 
 		this.setSize(1400, 570); // taille fenetre
 		this.setLocationRelativeTo(null); // position au centre
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // fermer au clic sur la croix rouge
-		this.setResizable(false); // on ne peut pas redimensionner la fenêtre
+		this.setResizable(false); // on ne peut pas redimensionner la fenï¿½tre
 		initListeners(); // initialisation des listeners
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	
@@ -54,7 +54,7 @@ public class Fenetre extends JFrame implements ActionListener{
 				// panel qui contient 2 boutons et 1 combobox
 				JPanel panneau1=new JPanel();
 
-				//ajouter choix de la fenetre a  ouvrir
+				//ajouter choix de la fenetre aï¿½ ouvrir
 				Object[] choix = new Object[]{"Client","Commande","Produit"};
 				choixFenBox = new JComboBox<>(choix);
 				
@@ -202,7 +202,8 @@ public class Fenetre extends JFrame implements ActionListener{
 				tabPr.addRow(new Object[] { infoPr[0], infoPr[1], infoPr[2] });
 				int id=Integer.parseInt(infoPr[0]);
 				float prix=Float.parseFloat(infoPr[2]);
-				Produit.AjouterProduit(id, infoPr[1].toString(), prix);
+				Object[] p = new Object[]{infoPr[1].toString(),prix};
+				Produit.AjouterProduit(id, p);
 			}
 		}
 		

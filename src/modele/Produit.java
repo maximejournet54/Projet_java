@@ -45,7 +45,7 @@ public abstract class Produit {
 		CollectionProduit.remove(p);
 	}
 
-	public static void AjouterProduit(int id, String string, float prix) {
-		CollectionProduit.add(id, string, prix);
+	public static void AjouterProduit(int id, Object obj) {
+		CollectionProduit.add(id, (Produit) obj);
 	}
 }
