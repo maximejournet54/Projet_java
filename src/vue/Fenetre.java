@@ -7,6 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +22,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import modele.Produit;
+import modele.Commande;
+import modele.Personne;
 
 
 public class Fenetre extends JFrame implements ActionListener{
@@ -158,21 +166,43 @@ public class Fenetre extends JFrame implements ActionListener{
 		{
 			if(choix == "Client") 
 			{
-				strInfoCl = JOptionPane.showInputDialog(this,"Saisir les informations du client en les separant par espace\nIdentifiant Nom Prenom (ex : 1 CALVET Yann)","Inscription client", JOptionPane.QUESTION_MESSAGE);
+				strInfoCl = JOptionPane.showInputDialog(this,"Saisir les informations du client en les separant par espace\n Nom Prenom (ex : 1 CALVET Yann)","Inscription client", JOptionPane.QUESTION_MESSAGE);
 				String[] infoCl = strInfoCl.split(" ");
 				tabCl.addRow(new Object[]{infoCl[0], infoCl[1], infoCl[2]});
+				UUID id=UUID.fromString(infoCl[0]);
+				Personne.AjouterPersonne(id, infoCl[1], infoCl[2]);
 			}
 			else if (choix == "Commande")
 			{
-				strInfoCo = JOptionPane.showInputDialog(this,"Saisir les informations de la commande en les separant par espace\nDateDébut DateFin Montant (ex : 01/01/2020 01/02/2020 10)","Nouvelle Commande", JOptionPane.QUESTION_MESSAGE);
+				strInfoCo = JOptionPane.showInputDialog(this,"Saisir les informations de la commande en les separant par espace\nDateDebut DateFin Montant (ex : 01/01/2020 01/02/2020 10)","Nouvelle Commande", JOptionPane.QUESTION_MESSAGE);
 				String[] infoCo = strInfoCo.split(" ");
 				tabCo.addRow(new Object[]{infoCo[0], infoCo[1], infoCo[2]});
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy ");
+				Date d = null;
+				try {
+					d = sdf.parse(infoCo[0]);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Date d1 = null;
+				try {
+					d1 = sdf.parse(infoCo[1]);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				float montant=Float.parseFloat(infoCo[2]);
+				Commande.AjouterEmprunt(d, d1, montant);
 			}
 			else if (choix == "Produit")
 			{
-				strInfoPr = JOptionPane.showInputDialog(this,"Saisir les informations du produit en les separant par espace\nIdentifiant Nom Tarif (ex : 1 Livre 10)","Création produit", JOptionPane.QUESTION_MESSAGE);
+				strInfoPr = JOptionPane.showInputDialog(this,"Saisir les informations du produit en les separant par espace\nIdentifiant Nom Tarif (ex : 1 Livre 10)","Creation produit", JOptionPane.QUESTION_MESSAGE);
 				String[] infoPr = strInfoPr.split(" ");
 				tabPr.addRow(new Object[] { infoPr[0], infoPr[1], infoPr[2] });
+				int id=Integer.parseInt(infoPr[0]);
+				float prix=Float.parseFloat(infoPr[2]);
+				Produit.AjouterProduit(id, infoPr[1].toString(), prix);
 			}
 		}
 		
@@ -184,12 +214,15 @@ public class Fenetre extends JFrame implements ActionListener{
 			{
 				if(tableCl.getSelectedRow() != -1)
 					tabCl.removeRow(tableCl.getSelectedRow());
+					Personne.SupprimerPersonne(null);
 
 				if(tableCo.getSelectedRow() != -1)
 					tabCo.removeRow(tableCo.getSelectedRow());
+					Commande.SupprimerEmprunt(null);
 
 				if(tablePr.getSelectedRow() != -1)
 					tabPr.removeRow(tablePr.getSelectedRow());
+					Produit.SupprimerProduit(null);
 				
 				JOptionPane.showMessageDialog(this, "Ligne(s) supprimee(s)", "Information", JOptionPane.INFORMATION_MESSAGE);
 			}

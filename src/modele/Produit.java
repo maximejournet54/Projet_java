@@ -8,7 +8,7 @@ public abstract class Produit {
 	 protected String titre;
 	 protected float tarifjournalier;
 	 private UUID idproduit;
-	 ArrayList<Produit> CollectionProduit;
+	 static ArrayList<Produit> CollectionProduit;
 	 
 	 public Produit(String titre, float tarifjournalier) {
 		 this.titre=titre;
@@ -41,11 +41,11 @@ public abstract class Produit {
 		this.idproduit = idproduit;
 	}
 	 
-	public void AjouterProduit(Produit p) {
-		CollectionProduit.add(p);
-	}
-	
-	public void RetirerProduit(Produit p) {
+	public static void SupprimerProduit(Produit p) {
 		CollectionProduit.remove(p);
+	}
+
+	public static void AjouterProduit(int id, String string, float prix) {
+		CollectionProduit.add(id, string, prix);
 	}
 }
