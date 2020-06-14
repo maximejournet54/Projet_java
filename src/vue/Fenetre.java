@@ -155,6 +155,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		JButton b = (JButton) e.getSource();
 		String choix = (String) choixFenBox.getSelectedItem();
 		String strInfoCl, strInfoCo, strInfoPr;
+		String[] client = {"Fidèle", "Occasionnel"};
 		DefaultTableModel tabCl = (DefaultTableModel) tableCl.getModel();
 		DefaultTableModel tabCo = (DefaultTableModel) tableCo.getModel();
 		DefaultTableModel tabPr = (DefaultTableModel) tablePr.getModel();
@@ -174,6 +175,9 @@ public class Fenetre extends JFrame implements ActionListener{
 			else if (choix == "Commande client fidele")
 			{
 				strInfoCo = JOptionPane.showInputDialog(this,"Saisir les informations de la commande en les separant par espace\nDateDebut DateFin Montant (ex : 01/01/2020 01/02/2020 10)","Nouvelle Commande", JOptionPane.QUESTION_MESSAGE);
+				JComboBox<String> jclient = new JComboBox<>(client);
+				JOptionPane.showMessageDialog(this,jclient,"Type Client",JOptionPane.QUESTION_MESSAGE);
+				String choixClient = (String) jclient.getSelectedItem();
 				String[] infoCo = strInfoCo.split(" ");
 				tabCo.addRow(new Object[]{infoCo[0], infoCo[1], infoCo[2]});
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy ");
@@ -190,38 +194,13 @@ public class Fenetre extends JFrame implements ActionListener{
 					e1.printStackTrace();
 				}
 				float montant=Float.parseFloat(infoCo[2]);
-<<<<<<< Updated upstream
-				//la reduction ne s'applique pas
-				montant=(float) (montant-(Client_Fidele.reduction*montant));
-				Commande.AjouterEmprunt(d, d1, montant);
-			}
-			else if (choix == "Commande client occasionnel")
-			{
-				strInfoCo = JOptionPane.showInputDialog(this,"Saisir les informations de la commande en les separant par espace\nDateDebut DateFin Montant (ex : 01/01/2020 01/02/2020 10)","Nouvelle Commande", JOptionPane.QUESTION_MESSAGE);
-				String[] infoCo = strInfoCo.split(" ");
-				tabCo.addRow(new Object[]{infoCo[0], infoCo[1], infoCo[2]});
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy ");
-				Date d = null;
-				try {
-					d = sdf.parse(infoCo[0]);
-				} catch (ParseException e1) {
-					e1.printStackTrace();
-				}
-				Date d1 = null;
-				try {
-					d1 = sdf.parse(infoCo[1]);
-				} catch (ParseException e1) {
-					e1.printStackTrace();
-=======
 				if(choixClient == "Fidèle")
 				{
-					Commande.AjouterEmprunt(d, d1, (float) (montant * Client_fidele.reduction));
->>>>>>> Stashed changes
+					montant=(float) (montant-(Client_Occasionnel.reduction*montant));
+					Commande.AjouterEmprunt(d, d1, montant);
 				}
-				float montant=Float.parseFloat(infoCo[2]);
-				//la reduction ne s'applique pas
-				montant=(float) (montant-(Client_Occasionnel.reduction*montant));
-				Commande.AjouterEmprunt(d, d1, montant);
+				else//la reduction ne s'applique pas
+					Commande.AjouterEmprunt(d, d1, montant);
 			}
 			else if (choix == "Produit")
 			{
