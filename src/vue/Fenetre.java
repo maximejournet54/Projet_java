@@ -190,6 +190,7 @@ public class Fenetre extends JFrame implements ActionListener{
 					e1.printStackTrace();
 				}
 				float montant=Float.parseFloat(infoCo[2]);
+<<<<<<< Updated upstream
 				//la reduction ne s'applique pas
 				montant=(float) (montant-(Client_Fidele.reduction*montant));
 				Commande.AjouterEmprunt(d, d1, montant);
@@ -211,6 +212,11 @@ public class Fenetre extends JFrame implements ActionListener{
 					d1 = sdf.parse(infoCo[1]);
 				} catch (ParseException e1) {
 					e1.printStackTrace();
+=======
+				if(choixClient == "Fidèle")
+				{
+					Commande.AjouterEmprunt(d, d1, (float) (montant * Client_fidele.reduction));
+>>>>>>> Stashed changes
 				}
 				float montant=Float.parseFloat(infoCo[2]);
 				//la reduction ne s'applique pas
