@@ -57,7 +57,7 @@ public class Fenetre extends JFrame implements ActionListener{
 				JPanel panneau1=new JPanel();
 
 				//ajouter choix de la fenetre a ouvrir
-				Object[] choix = new Object[]{"Client", "Commande client fidele", "Commande client occasionnel", "Produit"};
+				Object[] choix = new Object[]{"Client", "Commande", "Produit"};
 				choixFenBox = new JComboBox<>(choix);
 				
 				
@@ -172,7 +172,7 @@ public class Fenetre extends JFrame implements ActionListener{
 				UUID id=UUID.fromString(infoCl[0]);
 				Personne.AjouterPersonne(id, infoCl[1], infoCl[2]);
 			}
-			else if (choix == "Commande client fidele")
+			else if (choix == "Commande")
 			{
 				strInfoCo = JOptionPane.showInputDialog(this,"Saisir les informations de la commande en les separant par espace\nDateDebut DateFin Montant (ex : 01/01/2020 01/02/2020 10)","Nouvelle Commande", JOptionPane.QUESTION_MESSAGE);
 				JComboBox<String> jclient = new JComboBox<>(client);
@@ -180,7 +180,7 @@ public class Fenetre extends JFrame implements ActionListener{
 				String choixClient = (String) jclient.getSelectedItem();
 				String[] infoCo = strInfoCo.split(" ");
 				tabCo.addRow(new Object[]{infoCo[0], infoCo[1], infoCo[2]});
-				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy ");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 				Date d = null;
 				try {
 					d = sdf.parse(infoCo[0]);
