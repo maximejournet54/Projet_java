@@ -9,7 +9,7 @@ public class Client_Occasionnel extends Personne {
 	 * 
 	 * @see Client_Occasionnel#getReduction()
 	 */
-	private final double reduction = 0;
+	public final static double reduction = 0;
 
 	/**
 	 * constructeur

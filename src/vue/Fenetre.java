@@ -24,6 +24,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modele.Produit;
+import modele.Client_Fidele;
+import modele.Client_Occasionnel;
 import modele.Commande;
 import modele.Personne;
 
@@ -40,7 +42,7 @@ public class Fenetre extends JFrame implements ActionListener{
 	// constructeur 
 	public Fenetre(){
 	
-		this.setTitle("Gestion de la vid�oth�que"); // titre 
+		this.setTitle("Gestion de la videotheque"); // titre 
 		this.setSize(1400, 570); // taille fenetre
 		this.setLocationRelativeTo(null); // position au centre
 		this.setLayout(new BorderLayout());
@@ -54,8 +56,8 @@ public class Fenetre extends JFrame implements ActionListener{
 				// panel qui contient 2 boutons et 1 combobox
 				JPanel panneau1=new JPanel();
 
-				//ajouter choix de la fenetre a� ouvrir
-				Object[] choix = new Object[]{"Client","Commande","Produit"};
+				//ajouter choix de la fenetre a ouvrir
+				Object[] choix = new Object[]{"Client", "Commande client fidele", "Commande client occasionnel", "Produit"};
 				choixFenBox = new JComboBox<>(choix);
 				
 				
@@ -75,13 +77,14 @@ public class Fenetre extends JFrame implements ActionListener{
 				DefaultTableModel tableauCl = new DefaultTableModel(tabCl, titreCl);
 				tableCl = new JTable(tableauCl);
 				lclient = new JLabel("Tableau des clients");
+				
 				pnlClient.add(lclient);
 				pnlClient.add(new JScrollPane(tableCl));
 				pnlTab.add(pnlClient);
 
 				// Tableau Commande
 				JPanel pnlCommande = new JPanel();
-				String[] titreCo = new String[] { "Date Début", "Date Fin", "Montant" };
+				String[] titreCo = new String[] { "Date Debut", "Date Fin", "Montant" };
 				Object[][] tabCo = { { "01/01/2020", "01/02/2020", "10" } };
 				DefaultTableModel tableauCo = new DefaultTableModel(tabCo, titreCo);
 				tableCo = new JTable(tableauCo);
@@ -125,19 +128,14 @@ public class Fenetre extends JFrame implements ActionListener{
 		return boutonSuppr;
 	}
 
-	// initialise les Listeners
+	// initialise le listener de la fenetre
 	private void initListeners() {
 		 this.addWindowListener(new ExitListener());
     }
     
     //boite de dialogue quand l'utilisateur quitte l application 
     public void exit() {
-        int rep =
-                JOptionPane.showConfirmDialog(
-                this,
-                "Voulez vous vraiment quitter ?",
-                "Fermeture de l'application",
-                JOptionPane.YES_NO_OPTION);
+        int rep = JOptionPane.showConfirmDialog(this, "Voulez vous vraiment quitter ?", "Fermeture de l'application", JOptionPane.YES_NO_OPTION);
         System.out.println("rep :"+rep);
         if (rep == 0) {
             System.exit(0);
@@ -161,6 +159,7 @@ public class Fenetre extends JFrame implements ActionListener{
 		DefaultTableModel tabCo = (DefaultTableModel) tableCo.getModel();
 		DefaultTableModel tabPr = (DefaultTableModel) tablePr.getModel();
 
+
 		//bouton d'ajout
 		if(b == boutonAjout)
 		{
@@ -172,7 +171,7 @@ public class Fenetre extends JFrame implements ActionListener{
 				UUID id=UUID.fromString(infoCl[0]);
 				Personne.AjouterPersonne(id, infoCl[1], infoCl[2]);
 			}
-			else if (choix == "Commande")
+			else if (choix == "Commande client fidele")
 			{
 				strInfoCo = JOptionPane.showInputDialog(this,"Saisir les informations de la commande en les separant par espace\nDateDebut DateFin Montant (ex : 01/01/2020 01/02/2020 10)","Nouvelle Commande", JOptionPane.QUESTION_MESSAGE);
 				String[] infoCo = strInfoCo.split(" ");
@@ -182,17 +181,40 @@ public class Fenetre extends JFrame implements ActionListener{
 				try {
 					d = sdf.parse(infoCo[0]);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				Date d1 = null;
 				try {
 					d1 = sdf.parse(infoCo[1]);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				float montant=Float.parseFloat(infoCo[2]);
+				//la reduction ne s'applique pas
+				montant=(float) (montant-(Client_Fidele.reduction*montant));
+				Commande.AjouterEmprunt(d, d1, montant);
+			}
+			else if (choix == "Commande client occasionnel")
+			{
+				strInfoCo = JOptionPane.showInputDialog(this,"Saisir les informations de la commande en les separant par espace\nDateDebut DateFin Montant (ex : 01/01/2020 01/02/2020 10)","Nouvelle Commande", JOptionPane.QUESTION_MESSAGE);
+				String[] infoCo = strInfoCo.split(" ");
+				tabCo.addRow(new Object[]{infoCo[0], infoCo[1], infoCo[2]});
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy ");
+				Date d = null;
+				try {
+					d = sdf.parse(infoCo[0]);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				Date d1 = null;
+				try {
+					d1 = sdf.parse(infoCo[1]);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				float montant=Float.parseFloat(infoCo[2]);
+				//la reduction ne s'applique pas
+				montant=(float) (montant-(Client_Occasionnel.reduction*montant));
 				Commande.AjouterEmprunt(d, d1, montant);
 			}
 			else if (choix == "Produit")

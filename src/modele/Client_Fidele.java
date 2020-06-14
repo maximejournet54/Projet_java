@@ -2,14 +2,14 @@ package modele;
 
 import java.util.UUID;
 
-public class Client_fidele extends Personne {
+public class Client_Fidele extends Personne {
 	
 	/**
 	 * la reduction d'un client fidele
 	 * 
 	 * @see Client_fidele#getReduction()
 	 */
-	private final double reduction = 0.1;
+	public final static double reduction = 0.1;
 	
 
 	/**
@@ -27,7 +27,7 @@ public class Client_fidele extends Personne {
 	 * @see Personne#nom
 	 * @see Personne#prenom 
 	 */
-	public Client_fidele(UUID idpersonne, String nom, String prenom) {
+	public Client_Fidele(UUID idpersonne, String nom, String prenom) {
 		super(idpersonne, nom, prenom);
 	}
 	
